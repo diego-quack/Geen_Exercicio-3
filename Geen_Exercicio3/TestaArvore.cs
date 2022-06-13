@@ -21,6 +21,7 @@ namespace Geen_Exercicio3
             Pessoa Sigrid = new Pessoa("Sigrid", Opa);
             
             Reinhold.Conjuge(new Pessoa("Sonia"));
+
             Pessoa Christian = new Pessoa("Christian", Reinhold);
             Pessoa Gabrielle = new Pessoa("Gabrielle", Reinhold);
             Pessoa Sabine = new Pessoa("Sabine", Reinhold);
@@ -37,15 +38,16 @@ namespace Geen_Exercicio3
             Pessoa Lorena = new Pessoa("Lorena", Christian);
 
             Sigrid.Conjuge(new Pessoa("Peter"));
+
             Pessoa Martin = new Pessoa("Martin", Sigrid);
             Pessoa Thomas = new Pessoa("Thomas", Sigrid);
             Pessoa Claudia = new Pessoa("Claudia", Sigrid);
+
             Martin.Conjuge(new Pessoa("Carla"));
             Martin.AdicionarFilho(new Pessoa("Nicolas"));
+
             Lily.ImprimeArvore(0);
         }
     }
 }
-        }
-    }
-}
+        

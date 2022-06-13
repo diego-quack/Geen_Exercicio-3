@@ -9,15 +9,26 @@ namespace Geen_Exercicio3
     class Pessoa
     {
         public String Nome { get; set; }
+        public Pessoa Pessoa1 { get; set; }
 
-        public void AdicionarFilho(string nome, Pessoa pessoa)
+        public Pessoa(string nome)
         {
-
+            Nome = nome;
         }
 
-        public void Conjugue(Pessoa pessoa)
+        public Pessoa(string nome, Pessoa pessoa1) : this(nome)
         {
+            Pessoa1 = pessoa1;
+        }
 
+        public void AdicionarFilho(Pessoa nome)
+        {
+            Pessoa pessoa = new Pessoa(nome.Nome);
+        }
+
+        public void Conjuge(Pessoa nome)
+        {
+            Pessoa pessoa = new Pessoa(nome.Nome);
         }
 
         public void ImprimirArvore(Pessoa pessoa)
