@@ -46,7 +46,7 @@ namespace Geen_Exercicio3
             Martin.Conjuge(new Pessoa("Carla"));
             Martin.AdicionarFilho(new Pessoa("Nicolas"));
 
-            Lily.ImprimeArvore(0);
+            Lily.ImprimirArvore(Lily, 0);
         }
     }
 }
