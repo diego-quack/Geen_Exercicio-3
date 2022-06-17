@@ -10,43 +10,59 @@ namespace Geen_Exercicio3
     {
         static void Main(string[] args)
         {
+            List<Pessoa> lista = new List<Pessoa>();
+
             Pessoa Lily = new Pessoa("Lily");
-            Lily.Conjuge(new Pessoa("Wilhelm"));
-            
-            Pessoa Opa = new Pessoa("Opa", Lily);
-            Opa.Conjuge(new Pessoa("Oma"));
-            
-            Pessoa Reinhold = new Pessoa("Reinhold", Opa);
-            Pessoa Wilma = new Pessoa("Wilma", Opa);
-            Pessoa Sigrid = new Pessoa("Sigrid", Opa);
-            
-            Reinhold.Conjuge(new Pessoa("Sonia"));
+            Lily.AdicionarConjuge("Wilhelm");
 
-            Pessoa Christian = new Pessoa("Christian", Reinhold);
-            Pessoa Gabrielle = new Pessoa("Gabrielle", Reinhold);
-            Pessoa Sabine = new Pessoa("Sabine", Reinhold);
+            Pessoa Opa = new Pessoa().AdicionarFilho("Opa", Lily, Lily.Conjuge);
+            Opa.AdicionarConjuge("Oma");
 
-            
-            Wilma.Conjuge(new Pessoa("Rodolfo"));
-            Pessoa Ricardo = new Pessoa("Ricardo", Wilma);
-            Pessoa Rodrigo = new Pessoa("Rodrigo", Wilma);
+            Pessoa Reinhold = new Pessoa().AdicionarFilho("Reinhold", Opa, Opa.Conjuge);
+            Reinhold.AdicionarConjuge("Sonia");
+            Pessoa Christian = new Pessoa().AdicionarFilho("Christian", Reinhold, Reinhold.Conjuge);
+            Pessoa Gabi = new Pessoa().AdicionarFilho("Gabi", Reinhold, Reinhold.Conjuge);
+            Pessoa Sabine = new Pessoa().AdicionarFilho("Sabine", Reinhold, Reinhold.Conjuge);
 
-            Ricardo.Conjuge(new Pessoa("Debora"));
+            Pessoa Wilma = new Pessoa().AdicionarFilho("Wilma", Opa, Opa.Conjuge);
+            Wilma.AdicionarConjuge("Rodolfo");
+            Pessoa Ricardo = new Pessoa().AdicionarFilho("Ricardo", Wilma, Wilma.Conjuge);
 
-            Christian.Conjuge(new Pessoa("Mônica"));
-            Pessoa Oscar = new Pessoa("Oscar", Christian);
-            Pessoa Lorena = new Pessoa("Lorena", Christian);
+            Pessoa Sigrid = new Pessoa().AdicionarFilho("Sigrid", Opa, Opa.Conjuge);
+            Sigrid.AdicionarConjuge("Pedro");
+            Pessoa Martin = new Pessoa().AdicionarFilho("Martin", Sigrid, Sigrid.Conjuge);
+            Pessoa Thomas = new Pessoa().AdicionarFilho("Thomas", Sigrid, Sigrid.Conjuge);
+            Pessoa Claudia = new Pessoa().AdicionarFilho("Claudia", Sigrid, Sigrid.Conjuge);
 
-            Sigrid.Conjuge(new Pessoa("Peter"));
+            Martin.AdicionarConjuge("Carla");
+            Pessoa Nicolas = new Pessoa().AdicionarFilho("Nicolas", Martin, Martin.Conjuge);
 
-            Pessoa Martin = new Pessoa("Martin", Sigrid);
-            Pessoa Thomas = new Pessoa("Thomas", Sigrid);
-            Pessoa Claudia = new Pessoa("Claudia", Sigrid);
+            Ricardo.AdicionarConjuge("Debora");
+            Pessoa Rodrigo = new Pessoa().AdicionarFilho("Rodrigo", Ricardo, Ricardo.Conjuge);
+            Sigrid.AdicionarConjuge("Pedro");
 
-            Martin.Conjuge(new Pessoa("Carla"));
-            Martin.AdicionarFilho(new Pessoa("Nicolas"));
+            Christian.AdicionarConjuge("Monica");
+            Pessoa Oscar = new Pessoa().AdicionarFilho("Oscar", Christian, Christian.Conjuge);
+            Pessoa Lorena = new Pessoa().AdicionarFilho("Lorena", Christian, Christian.Conjuge);
 
-            Lily.ImprimirArvore(Lily, 0);
+            lista.Add(Lily);
+            lista.Add(Opa);
+            lista.Add(Reinhold);
+            lista.Add(Wilma);
+            lista.Add(Sigrid);
+            lista.Add(Martin);
+            lista.Add(Thomas);
+            lista.Add(Claudia);
+            lista.Add(Nicolas);
+            lista.Add(Ricardo);
+            lista.Add(Rodrigo);
+            lista.Add(Christian);
+            lista.Add(Gabi);
+            lista.Add(Sabine);
+            lista.Add(Oscar);
+            lista.Add(Lorena);
+
+            Pessoa.ImprimirArvore(null, lista, 0);
         }
     }
 }

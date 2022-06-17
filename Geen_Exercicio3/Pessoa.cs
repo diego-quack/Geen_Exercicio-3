@@ -9,8 +9,9 @@ namespace Geen_Exercicio3
     class Pessoa
     {
         public String Nome { get; set; }
-        public Pessoa Ascendente { get; set; }
-        public List<Pessoa> Filho = new List<Pessoa>();
+        public Pessoa Pai { get; set; }
+        public Pessoa Mae { get; set; }
+        public Pessoa Conjuge { get; set; }
 
         public Pessoa()
         {
@@ -21,32 +22,73 @@ namespace Geen_Exercicio3
             Nome = nome;
         }
 
-        public Pessoa(string nome, Pessoa ascendente) : this(nome)
+        public Pessoa(string nome, Pessoa pai, Pessoa mae) : this(nome)
         {
-            Ascendente = ascendente;
+
+            Pai = pai;
+            Mae = mae;
         }
 
-        public void AdicionarFilho(Pessoa nome)
+        public Pessoa AdicionarFilho(String nome, Pessoa responsavel1, Pessoa responsavel2)
         {
-            Pessoa pessoa = new Pessoa(nome.Nome);
-            Console.WriteLine("-->" + pessoa.Nome + " é solteiro(a)");
+            Pessoa pessoa = new Pessoa(nome, responsavel1, responsavel2);
+            return pessoa;
         }
 
-        public void Conjuge(Pessoa nome)
+        public void AdicionarConjuge(String nome)
         {
-            Pessoa pessoa = new Pessoa(nome.Nome);
-            Console.WriteLine("-->" + Nome + " é casado(a) com " + pessoa.Nome + " - Filhos: ");
+            Conjuge = new Pessoa(nome);
         }
 
-        public void ImprimirArvore(Pessoa pessoa, int cont)
+        public static void ImprimirArvore(Pessoa pessoaAtual, List<Pessoa> lista, int contador)
         {
-            if(cont == 0)
+            if (pessoaAtual is null)
             {
-                Console.WriteLine("Erro");
+                foreach(Pessoa pessoa in lista)
+                {
+                    if (pessoa.Pai is null)
+                    {
+                        if (pessoa.Conjuge is null)
+                        {
+                            pessoaAtual = new Pessoa();
+                            Console.WriteLine("-->" + pessoa.Nome + " é solteiro(a)");
+                        }
+                        else
+                        {
+                            pessoaAtual = new Pessoa();
+                            Console.WriteLine("-->" + pessoa.Nome + " é casado(a) com " + pessoa.Conjuge.Nome + " - Filhos: ");
+                            ImprimirArvore(pessoa, lista, contador + 2);
+                        }
+                    }
+                }
             }
-            Conjuge(pessoa);
-            AdicionarFilho(pessoa);
-            ImprimirArvore(pessoa, cont + 1);
+            else
+            {
+                Boolean existeFilhos = false;
+                foreach(Pessoa pessoaAtual2 in lista)
+                {
+                    if(!existeFilhos)
+                    {
+                        if(pessoaAtual2.Pai == pessoaAtual || pessoaAtual2.Mae == pessoaAtual)
+                        {
+                            string mensagem = "";
+                            for(int i = 0; i < contador; i++)
+                            {
+                                mensagem += " ";
+                            }
+                            if(pessoaAtual2.Conjuge is null)
+                            {
+                                Console.WriteLine(mensagem + "--> " + pessoaAtual2.Nome + " é solteiro(a)");
+                            }
+                            else
+                            {
+                                Console.WriteLine(mensagem + "--> " + pessoaAtual2.Nome + " é casado(a) com " + pessoaAtual2.Conjuge.Nome + " - Filhos: ");
+                                ImprimirArvore(pessoaAtual2, lista, contador + 2);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
